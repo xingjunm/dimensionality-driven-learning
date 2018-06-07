@@ -185,4 +185,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     main(args)
 
+    # for dataset in ['mnist']:
+    #     for noise_ratio in ['0', '20', '40', '60']:
+    #         args = parser.parse_args(['-d', dataset, '-m', 'd2l',
+    #                                   '-e', '50', '-b', '128',
+    #                                   '-r', noise_ratio])
+    #         main(args)
+
     K.clear_session()
