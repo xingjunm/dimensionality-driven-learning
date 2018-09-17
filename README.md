@@ -1,5 +1,7 @@
 ## Code for ICML 2018 paper "Dimensionality-Driven Learning with Noisy Labels".
 
+## Updated: change initial learning rates to 0.01 for convergence issue. This leads to performance decreases, still needs to be fixed.
+
 ### 1. Train DNN models using command line:
 
 An example: <br/>
