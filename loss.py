@@ -4,15 +4,14 @@ import tensorflow as tf
 
 
 def cross_entropy(y_true, y_pred):
-    y_pred /= K.sum(y_pred, axis=-1, keepdims=True)
-    y_pred = K.clip(y_pred, K.epsilon(), 1.0 - K.epsilon())
-    return -K.sum(y_true * K.log(y_pred), axis=-1)
+    return K.categorical_crossentropy(y_true, y_pred)
+
 
 def boot_soft(y_true, y_pred):
     """
     2015 - iclrws - Training deep neural networks on noisy labels with bootstrapping.
     https://arxiv.org/abs/1412.6596
-    
+
     :param y_true: 
     :param y_pred: 
     :return: 
@@ -40,7 +39,8 @@ def boot_hard(y_true, y_pred):
     y_pred = K.clip(y_pred, K.epsilon(), 1.0 - K.epsilon())
     pred_labels = K.one_hot(K.argmax(y_pred, 1), num_classes=K.shape(y_true)[1])
     return -K.sum((beta * y_true + (1. - beta) * pred_labels) *
-           K.log(y_pred), axis=-1)
+                  K.log(y_pred), axis=-1)
+
 
 def forward(P):
     """
@@ -50,12 +50,14 @@ def forward(P):
     :return: 
     """
     P = K.constant(P)
+
     def loss(y_true, y_pred):
         y_pred /= K.sum(y_pred, axis=-1, keepdims=True)
         y_pred = K.clip(y_pred, K.epsilon(), 1.0 - K.epsilon())
         return -K.sum(y_true * K.log(K.dot(y_pred, P)), axis=-1)
 
     return loss
+
 
 def backward(P):
     """
@@ -72,6 +74,7 @@ def backward(P):
         return -K.sum(K.dot(y_true, P_inv) * K.log(y_pred), axis=-1)
 
     return loss
+
 
 def lid(logits, k=20):
     """
@@ -101,6 +104,7 @@ def lid(logits, k=20):
 
     return lids
 
+
 def lid_paced_loss(alpha=1.0):
     """TO_DO
     Class wise lid pace learning, targeting classwise asymetric label noise.
@@ -117,7 +121,9 @@ def lid_paced_loss(alpha=1.0):
     # return loss
     if alpha == 1.0:
         def loss(y_true, y_pred):
-            return K.categorical_crossentropy(y_pred, y_true)
+            y_true = K.clip(y_true, 0.01 / 9, 0.99)
+            return -K.sum(y_true * K.log(y_pred), axis=-1)
+
         return loss
     else:
         def loss(y_true, y_pred):
@@ -126,4 +132,5 @@ def lid_paced_loss(alpha=1.0):
             y_pred /= K.sum(y_pred, axis=-1, keepdims=True)
             y_pred = K.clip(y_pred, K.epsilon(), 1.0 - K.epsilon())
             return -K.sum(y_new * K.log(y_pred), axis=-1)
+
         return loss

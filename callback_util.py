@@ -158,10 +158,10 @@ class LoggerCallback(Callback):
                         (self.model_name, self.dataset, self.noise_ratio)
             np.save(file_name, np.array(self.lids))
 
-            if len(np.array(self.lids).flatten()) > 5:
-                print('lid = ..., ', np.array(self.lids).flatten()[-5:])
+            if len(np.array(self.lids).flatten()) > 20:
+                print('lid = ...', self.lids[-20:])
             else:
-                print('lid = ..., ', np.array(self.lids).flatten())
+                print('lid = ', self.lids)
 
             # compute csr scores
             # LASS to estimate the critical sample ratio
@@ -181,10 +181,10 @@ class LoggerCallback(Callback):
                         (self.model_name, self.dataset, self.noise_ratio)
             np.save(file_name, np.array(self.csrs))
 
-            if len(self.csrs) > 5:
-                print('csr = ..., ', np.array(self.csrs)[-5:])
+            if len(self.csrs) > 20:
+                print('csr = ...', self.csrs[-20:])
             else:
-                print('csr = ..., ', np.array(self.csrs))
+                print('csr = ', self.csrs)
 
         return
 

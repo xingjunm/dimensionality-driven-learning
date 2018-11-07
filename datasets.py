@@ -4,7 +4,6 @@ from subprocess import call
 import warnings
 import numpy as np
 import scipy.io as sio
-from tqdm import tqdm
 import numpy as np
 import keras.backend as K
 from keras.datasets import mnist, cifar10, cifar100
