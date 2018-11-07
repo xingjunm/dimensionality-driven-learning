@@ -1,7 +1,6 @@
 ## Code for ICML 2018 paper "Dimensionality-Driven Learning with Noisy Labels".
 
-## Updated: change initial learning rates to 0.01 for convergence issue. This leads to performance decreases, still needs to be fixed.
-## Updated: uploaded old version of d2l. 20/09/2018
+## News: Issues fixed on CIFAR-10. 07/11/2018
 
 ### 1. Train DNN models using command line:
 
@@ -27,4 +26,4 @@ python train_model.py -d mnist -m d2l -e 50 -b 128 -r 40
 ```
 
 #### Requirements:
-tensorflow, Keras, numpy, scipy, tqdm, sklearn, matplotlib
+tensorflow, Keras, numpy, scipy, sklearn, matplotlib
