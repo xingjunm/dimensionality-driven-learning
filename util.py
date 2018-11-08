@@ -198,10 +198,8 @@ def get_lr_scheduler(dataset):
     elif dataset in ['cifar-100']:
         def scheduler(epoch):
             if epoch > 120:
-                return 0.0001
-            elif epoch > 80:
                 return 0.001
-            elif epoch > 40:
+            elif epoch > 80:
                 return 0.01
             else:
                 return 0.1

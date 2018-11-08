@@ -121,14 +121,13 @@ def train(dataset='mnist', model_name='d2l', batch_size=128, epochs=50, noise_ra
     # data augmentation
     if dataset in ['mnist', 'svhn']:
         datagen = ImageDataGenerator()
-    elif dataset in ['cifar-10']:
+    elif dataset in ['cifar-10', 'cifar-100']:
         datagen = ImageDataGenerator(
             width_shift_range=0.2,
             height_shift_range=0.2,
             horizontal_flip=True)
     else:
         datagen = ImageDataGenerator(
-            rotation_range=20,
             width_shift_range=0.2,
             height_shift_range=0.2,
             horizontal_flip=True)
