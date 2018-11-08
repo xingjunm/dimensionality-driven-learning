@@ -128,8 +128,8 @@ def train(dataset='mnist', model_name='d2l', batch_size=128, epochs=50, noise_ra
             horizontal_flip=True)
     else:
         datagen = ImageDataGenerator(
-            width_shift_range=0.2,
-            height_shift_range=0.2,
+            width_shift_range=0.1,
+            height_shift_range=0.1,
             horizontal_flip=True)
     datagen.fit(X_train)
 
