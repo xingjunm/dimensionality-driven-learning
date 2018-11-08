@@ -15,8 +15,8 @@ from models import get_model
 from loss import cross_entropy, boot_soft, boot_hard, forward, backward, lid_paced_loss
 from callback_util import D2LCallback, LoggerCallback
 
-D2L = {'mnist': {'init_epoch': 5, 'epoch_win': 5}, 'svhn': {'init_epoch': 10, 'epoch_win': 5},
-       'cifar-10': {'init_epoch': 20, 'epoch_win': 5}, 'cifar-100': {'init_epoch': 40, 'epoch_win': 5}}
+D2L = {'mnist': {'init_epoch': 5, 'epoch_win': 5}, 'svhn': {'init_epoch': 20, 'epoch_win': 5},
+       'cifar-10': {'init_epoch': 40, 'epoch_win': 5}, 'cifar-100': {'init_epoch': 60, 'epoch_win': 5}}
 
 # prepare folders
 folders = ['data', 'model', 'log']
