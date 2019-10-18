@@ -28,7 +28,7 @@ def get_model(dataset='mnist', input_tensor=None, input_shape=None, num_classes=
             img_input = input_tensor
 
     if dataset == 'mnist':
-        # ## LeNet-5
+        # ## LeNet-5 like 4-layer CNN
         x = Conv2D(32, (3, 3), padding='same', kernel_initializer="he_normal", name='conv1')(img_input)
         x = BatchNormalization()(x)
         x = Activation('relu')(x)
@@ -52,7 +52,7 @@ def get_model(dataset='mnist', input_tensor=None, input_shape=None, num_classes=
         model = Model(img_input, x)
 
     elif dataset == 'svhn':
-        # ## LeNet-5
+        # ## LeNet-5 like 5-layer CNN
         x = Conv2D(64, (3, 3), padding='same', kernel_initializer='he_normal', name='conv1')(img_input)
         x = BatchNormalization()(x)
         x = Activation('relu')(x)
@@ -80,6 +80,7 @@ def get_model(dataset='mnist', input_tensor=None, input_shape=None, num_classes=
         model = Model(img_input, x)
 
     elif dataset == 'cifar-10':
+        # VGG-like 8-layer CNN
         # Block 1
         x = Conv2D(64, (3, 3), padding='same', kernel_initializer="he_normal", name='block1_conv1')(img_input)
         x = BatchNormalization()(x)
@@ -120,6 +121,7 @@ def get_model(dataset='mnist', input_tensor=None, input_shape=None, num_classes=
         model = Model(img_input, x)
 
     elif dataset == 'cifar-100':
+        # resnet
         model = cifar100_resnet(depth=7, num_classes=num_classes)
 
     return model
