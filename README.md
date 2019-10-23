@@ -4,8 +4,11 @@
 ## Update: Replacing cross entropy -> symmetric cross entropy when lid=1.0. 10/23/2019
 
 The Symmetric Cross Entropy was demonstrated can improve several exisiting methods including the D2L:
+
 ICCV2019 "Symmetric Cross Entropy for Robust Learning with Noisy Labels"
+
 https://arxiv.org/abs/1908.06112
+
 https://github.com/YisenWang/symmetric_cross_entropy_for_noisy_labels
 
 ### 1. Train DNN models using command line:
