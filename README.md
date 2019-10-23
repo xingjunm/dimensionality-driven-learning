@@ -1,7 +1,7 @@
 ## Code for ICML 2018 paper "Dimensionality-Driven Learning with Noisy Labels".
 
 ## Update: Issues fixed on CIFAR-10. 11/07/2018
-## Update: Cross entropy -> symmetric cross entropy at the begining on CIFAR-10. 10/23/2019
+## Update: Replacing cross entropy -> symmetric cross entropy when lid=1.0. 10/23/2019
 
 The Symmetric Cross Entropy was demonstrated can improve several exisiting methods including the D2L:
 ICCV2019 "Symmetric Cross Entropy for Robust Learning with Noisy Labels"
