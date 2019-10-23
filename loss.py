@@ -133,17 +133,8 @@ def lid_paced_loss(alpha=1.0):
     Returns:
       Loss tensor of type float.
     """
-
-    # def loss(y_true, y_pred):
-    #     return K.categorical_crossentropy(y_pred, y_true)
-    #
-    # return loss
     if alpha == 1.0:
-        def loss(y_true, y_pred):
-            y_true = K.clip(y_true, 0.01 / 9, 0.99)
-            return -K.sum(y_true * K.log(y_pred), axis=-1)
-
-        return loss
+        return symmetric_cross_entropy(alpha=0.1, beta=1.0)
     else:
         def loss(y_true, y_pred):
             pred_labels = K.one_hot(K.argmax(y_pred, 1), num_classes=K.shape(y_true)[1])
