@@ -50,7 +50,10 @@ def train(dataset='mnist', model_name='d2l', batch_size=128, epochs=50, noise_ra
     model = get_model(dataset, input_tensor=None, input_shape=image_shape, num_classes=num_classes)
     # model.summary()
 
-    optimizer = SGD(lr=0.01, decay=1e-4, momentum=0.9)
+    if dataset == 'cifar-100':
+        optimizer = SGD(lr=0.1, decay=5e-3, momentum=0.9)
+    else:
+        optimizer = SGD(lr=0.1, decay=1e-4, momentum=0.9)
 
     # for backward, forward loss
     # suppose the model knows noise ratio
@@ -121,15 +124,16 @@ def train(dataset='mnist', model_name='d2l', batch_size=128, epochs=50, noise_ra
     # data augmentation
     if dataset in ['mnist', 'svhn']:
         datagen = ImageDataGenerator()
-    elif dataset in ['cifar-10', 'cifar-100']:
+    elif dataset in ['cifar-10']:
         datagen = ImageDataGenerator(
             width_shift_range=0.2,
             height_shift_range=0.2,
             horizontal_flip=True)
     else:
         datagen = ImageDataGenerator(
-            width_shift_range=0.1,
-            height_shift_range=0.1,
+            rotation_range=20,
+            width_shift_range=0.2,
+            height_shift_range=0.2,
             horizontal_flip=True)
     datagen.fit(X_train)
 
