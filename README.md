@@ -1,7 +1,8 @@
 ## Code for ICML 2018 paper "Dimensionality-Driven Learning with Noisy Labels".
 
-### Update (11/07/2018): Issues fixed on CIFAR-10. 
-### Update (10/23/2019): Replacing cross entropy -> symmetric cross entropy when lid=1.0.
+### Update (2018.07): Issues fixed on CIFAR-10. 
+### Update (2019.10): Replacing cross entropy -> symmetric cross entropy (SCE) when lid=1.0.
+### Fix (2020.03): convergence issue on CIFAR-100 when using SCE loss: learning rate, data augmentation and parameters for SCE. 
 
 The Symmetric Cross Entropy was demonstrated can improve several exisiting methods including the D2L:
 
@@ -26,12 +27,29 @@ python train_model.py -d mnist -m d2l -e 50 -b 128 -r 40
 
 ### 2. Run with pre-set parameters in main function of train_model.py:
 ```python
-    for dataset in ['mnist']:
-        for noise_ratio in ['0', '20', '40', '60']:
-            args = parser.parse_args(['-d', dataset, '-m', 'd2l',
-                                      '-e', '50', '-b', '128',
-                                      '-r', noise_ratio])
-            main(args)
+    # mnist example
+    args = parser.parse_args(['-d', 'mnist', '-m', 'd2l',
+                              '-e', '50', '-b', '128',
+                              '-r', '40'])
+    main(args)
+    
+    # svhn example
+    args = parser.parse_args(['-d', 'svhn', '-m', 'd2l',
+                              '-e', '50', '-b', '128',
+                              '-r', '40'])
+    main(args)
+    
+    # cifar-10 example
+    args = parser.parse_args(['-d', 'cifar-10', '-m', 'd2l',
+                              '-e', '120', '-b', '128',
+                              '-r', '40'])
+    main(args)
+    
+    # cifar-100 example
+    args = parser.parse_args(['-d', 'cifar-100', '-m', 'd2l',
+                              '-e', '200', '-b', '128',
+                              '-r', '40'])
+    main(args)
 ```
 
 #### Requirements:

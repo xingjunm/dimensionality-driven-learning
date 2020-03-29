@@ -70,7 +70,10 @@ def train(dataset='mnist', model_name='d2l', batch_size=128, epochs=50, noise_ra
     elif model_name == 'boot_soft':
         loss = boot_soft
     elif model_name == 'd2l':
-        loss = lid_paced_loss()
+        if dataset == 'cifar-100':
+            loss = lid_paced_loss(beta1=6.0, beta2=0.1)
+        else:
+            loss = lid_paced_loss(beta1=0.1, beta2=1.0)
     else:
         loss = cross_entropy
 

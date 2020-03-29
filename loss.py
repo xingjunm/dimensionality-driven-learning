@@ -124,7 +124,7 @@ def lid(logits, k=20):
     return lids
 
 
-def lid_paced_loss(alpha=1.0):
+def lid_paced_loss(alpha=1.0, beta1=0.1, beta2=1.0):
     """TO_DO
     Class wise lid pace learning, targeting classwise asymetric label noise.
 
@@ -134,7 +134,7 @@ def lid_paced_loss(alpha=1.0):
       Loss tensor of type float.
     """
     if alpha == 1.0:
-        return symmetric_cross_entropy(alpha=0.1, beta=1.0)
+        return symmetric_cross_entropy(alpha=beta1, beta=beta2)
     else:
         def loss(y_true, y_pred):
             pred_labels = K.one_hot(K.argmax(y_pred, 1), num_classes=K.shape(y_true)[1])

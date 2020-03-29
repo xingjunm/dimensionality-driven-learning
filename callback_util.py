@@ -203,7 +203,7 @@ def get_lr_scheduler(dataset):
             elif epoch > 20:
                 return 0.01
             else:
-                return 0.01
+                return 0.1
         return LearningRateScheduler(scheduler)
     elif dataset in ['cifar-10']:
         def scheduler(epoch):
@@ -212,7 +212,7 @@ def get_lr_scheduler(dataset):
             elif epoch > 40:
                 return 0.01
             else:
-                return 0.01
+                return 0.1
         return LearningRateScheduler(scheduler)
     elif dataset in ['cifar-100']:
         def scheduler(epoch):
@@ -223,5 +223,5 @@ def get_lr_scheduler(dataset):
             elif epoch > 80:
                 return 0.01
             else:
-                return 0.01
+                return 0.1
         return LearningRateScheduler(scheduler)
