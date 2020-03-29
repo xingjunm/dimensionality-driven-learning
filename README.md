@@ -1,16 +1,14 @@
-## Code for ICML 2018 paper "Dimensionality-Driven Learning with Noisy Labels".
+### Code for ICML 2018 paper "Dimensionality-Driven Learning with Noisy Labels".
 
-### Update (2018.07): Issues fixed on CIFAR-10. 
-### Update (2019.10): Replacing cross entropy -> symmetric cross entropy (SCE) when lid=1.0.
-### Fix (2020.03): convergence issue on CIFAR-100 when using SCE loss: learning rate, data augmentation and parameters for SCE. 
+#### - Update (2018.07): Issues fixed on CIFAR-10. 
+#### - Update (2019.10): Start training with symmetric cross entropy (SCE) loss (replacing cross entropy).
 
-The Symmetric Cross Entropy was demonstrated can improve several exisiting methods including the D2L:
-
+The Symmetric Cross Entropy (SCE) was demonstrated can improve several exisiting methods including the D2L:
 ICCV2019 "Symmetric Cross Entropy for Robust Learning with Noisy Labels"
-
 https://arxiv.org/abs/1908.06112
-
 https://github.com/YisenWang/symmetric_cross_entropy_for_noisy_labels
+
+#### - Update (2020.03): convergence issue on CIFAR-100 when using SCE loss: learning rate, data augmentation and parameters for SCE. 
 
 
 ### 1. Train DNN models using command line:
